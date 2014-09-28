@@ -7,10 +7,12 @@ public:
 
 TEST_F(Test_sprintf, NoFormatOperations) {
 
-    char output[5] = "";
+    char output[5];
+    memset(output, '\xaa', sizeof(output));
 
     ASSERT_EQ(3, sprintf(output, "hey"));
     ASSERT_STREQ("hey", output);
+    ASSERT_EQ('\xaa', output[4]);
 }
 
 TEST_F(Test_sprintf, InsertString) {
