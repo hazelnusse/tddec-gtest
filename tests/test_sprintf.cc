@@ -17,9 +17,12 @@ TEST_F(Test_sprintf, NoFormatOperations) {
 
 TEST_F(Test_sprintf, InsertString) {
 
-    char output[20] = "";
+    char output[20];
+    memset(output, '\xaa', sizeof(output));
 
-    ASSERT_EQ(12, sprintf(output, "Hello %s\n", "World"));
-    ASSERT_STREQ("Hello World\n", output);
+    ASSERT_EQ(12, sprintf(output + 1, "Hello %s\n", "World"));
+    ASSERT_STREQ("Hello World\n", output + 1);
+    ASSERT_EQ('\xaa', output[0]);
+    ASSERT_EQ('\xaa', output[14]);
 }
 
