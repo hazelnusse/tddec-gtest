@@ -1,3 +1,5 @@
+#include <cstdio>   // for sprintf
+#include <cstring>  // for memset and strlen
 #include <gtest/gtest.h>
 
 constexpr char fill_char = '\xaa';
