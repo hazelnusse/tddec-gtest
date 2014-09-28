@@ -5,7 +5,7 @@ Test-Driven Development for Embedded C (using GTest/GMock)
 This project is my place to record my work going through all tests, examples,
 and exercises presented in the book Test-Driven Development for Embedded C
 [TDDEC]_ by James W. Grenning. However, instead of using CppUTest and Unity as
-is done in the book, I instead GTest and/or GMock. Additionally, instead of
+is done in the book, I instead use GTest and/or GMock. Additionally, instead of
 using Makefiles directly, I use CMake and CTest.
 
 I am writing the code as I read through the book, so commits should follow the
