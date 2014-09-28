@@ -22,3 +22,9 @@ TEST_F(Test_LedDriver, TurnOnLedOne) {
     ASSERT_EQ(1, virtualLeds);
 }
 
+TEST_F(Test_LedDriver, TurnOffLedOne) {
+    led.TurnOn(1);
+    led.TurnOff(1);
+    ASSERT_EQ(0, virtualLeds);
+}
+

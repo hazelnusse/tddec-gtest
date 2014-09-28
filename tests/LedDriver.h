@@ -12,6 +12,10 @@ public:
     void TurnOn(int ledNumber) {
         m_address = 1;
     }
+
+    void TurnOff(int ledNumber) {
+        m_address = 0;
+    }
 private:
     uint16_t& m_address;
 };
