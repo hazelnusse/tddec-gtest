@@ -1,28 +1,37 @@
 #include <gtest/gtest.h>
 
+constexpr char fill_char = '\xaa';
+
 class Test_sprintf: public ::testing::Test {
 public:
+    const char* expected;
+    char output[100];
 
+    Test_sprintf() : expected(nullptr) {
+        memset(output, fill_char, sizeof(output));
+    }
+
+    void expect(const char* s) {
+        expected = s;
+    }
+
+    void given(int charsWritten) {
+        int length = strlen(expected);
+        ASSERT_EQ(length, charsWritten);
+        ASSERT_STREQ(expected, output + 1);
+        ASSERT_EQ(fill_char, output[0]);
+        ASSERT_EQ(fill_char, output[length + 2]);
+    }
 };
 
 TEST_F(Test_sprintf, NoFormatOperations) {
-
-    char output[5];
-    memset(output, '\xaa', sizeof(output));
-
-    ASSERT_EQ(3, sprintf(output, "hey"));
-    ASSERT_STREQ("hey", output);
-    ASSERT_EQ('\xaa', output[4]);
+    expect("hey");
+    given(sprintf(output + 1, "hey"));
 }
 
 TEST_F(Test_sprintf, InsertString) {
-
-    char output[20];
-    memset(output, '\xaa', sizeof(output));
-
-    ASSERT_EQ(12, sprintf(output + 1, "Hello %s\n", "World"));
-    ASSERT_STREQ("Hello World\n", output + 1);
-    ASSERT_EQ('\xaa', output[0]);
-    ASSERT_EQ('\xaa', output[14]);
+    expect("Hello World\n");
+    given(sprintf(output + 1, "Hello %s\n", "World"));
 }
+
 
