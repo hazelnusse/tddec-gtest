@@ -17,7 +17,7 @@ order of presentation of the book.
 Downloading and building the code
 ---------------------------------
 
-Frist, clone the git repository::
+First, clone the git repository::
 
   $ git clone https://github.com/hazelnusse/tddec-gtest.git
 
